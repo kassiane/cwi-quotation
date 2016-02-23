@@ -2,7 +2,7 @@ package com.kassiane.cwi.quotation.domain;
 
 import java.util.Date;
 
-public class Currency {
+public class CBCurrency {
     private final String name;
     private final String code;
     private final String type;
@@ -12,7 +12,7 @@ public class Currency {
     private final String sell_parity;
     private final Date date;
 
-    public Currency(final String name, final String code, final String type, final String buy_tax, final String sell_tax,
+    public CBCurrency(final String name, final String code, final String type, final String buy_tax, final String sell_tax,
             final String buy_parity, final String sell_parity, final Date date) {
         this.name = name;
         this.code = code;

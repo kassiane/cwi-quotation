@@ -1,4 +1,4 @@
-package com.kassiane.cwi.quotation.reader.exception;
+package com.kassiane.cwi.quotation.exception;
 
 public class QuotationDateNotAvailableException extends RuntimeException {
 
