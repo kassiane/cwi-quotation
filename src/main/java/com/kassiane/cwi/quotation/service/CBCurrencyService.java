@@ -3,6 +3,7 @@ package com.kassiane.cwi.quotation.service;
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.math.MathContext;
+import java.math.RoundingMode;
 import java.net.URL;
 import java.text.ParseException;
 import java.util.Date;
@@ -38,13 +39,14 @@ public class CBCurrencyService {
         final URL url = dataProviderUrl.getUrl(date);
 
         final String data = dataProviderReader.read(url);
-        final CBCurrency fromCurrency = this.currencyDAO.getCurrency(from, data);
-        final CBCurrency toCurrency = this.currencyDAO.getCurrency(to, data);
-
-        final BigDecimal proportion = fromCurrency.getBuyTax().divide(toCurrency.getBuyTax());
-
+        final CBCurrency fromCurrency = this.currencyDAO.getCurrency(data, from);
+        final CBCurrency toCurrency = this.currencyDAO.getCurrency(data, to);
+        System.out.println(fromCurrency.toString());
+        System.out.println(toCurrency.toString());
+        final BigDecimal proportion = fromCurrency.getBuyTax().divide(toCurrency.getBuyTax(), 2, RoundingMode.HALF_UP);
         final BigDecimal bigDecimalValue = new BigDecimal(Float.toString(value));
 
-        return proportion.multiply(bigDecimalValue, new MathContext(2));
+        final BigDecimal currencyQuotation = proportion.multiply(bigDecimalValue);
+        return currencyQuotation.abs(new MathContext(2));
     }
 }

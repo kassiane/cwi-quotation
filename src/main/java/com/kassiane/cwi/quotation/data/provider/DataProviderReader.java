@@ -13,9 +13,8 @@ public class DataProviderReader {
 
     public String read(final URL url) throws IOException, QuotationDateNotAvailableException {
         Scanner scanner = null;
-        String content = null;
+        String content = "";
         scanner = this.openUrlStream(url);
-
         while (scanner.hasNextLine()) {
             content += scanner.nextLine() + "\n";
         }

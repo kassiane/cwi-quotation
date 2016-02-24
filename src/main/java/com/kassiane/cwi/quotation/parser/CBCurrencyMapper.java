@@ -41,7 +41,7 @@ public class CBCurrencyMapper {
         final DecimalFormatSymbols symbols = new DecimalFormatSymbols();
         symbols.setGroupingSeparator('.');
         symbols.setDecimalSeparator(',');
-        final String pattern = "###.##0,0####";
+        final String pattern = "###,###.######";
         final DecimalFormat decimalFormat = new DecimalFormat(pattern, symbols);
         decimalFormat.setParseBigDecimal(true);
 

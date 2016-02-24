@@ -4,6 +4,7 @@ import java.math.BigDecimal;
 import java.util.Date;
 
 public class CBCurrency {
+
     private final String name;
     private final String code;
     private final String type;
@@ -59,9 +60,9 @@ public class CBCurrency {
 
     @Override
     public String toString() {
-        return "Currency [name=" + this.name + ", code=" + this.code + ", type=" + this.type + ", buy_tax=" + this.buyTax
-                + ", sell_tax=" + this.sellTax + ", buy_parity=" + this.buyParity + ", sell_parity=" + this.sellParity
-                + ", date=" + this.date + "]";
+        return "CBCurrency [name=" + this.name + ", code=" + this.code + ", type=" + this.type + ", buyTax=" + this.buyTax
+                + ", sellTax=" + this.sellTax + ", buyParity=" + this.buyParity + ", sellParity=" + this.sellParity + ", date="
+                + this.date + "]";
     }
 
 }
