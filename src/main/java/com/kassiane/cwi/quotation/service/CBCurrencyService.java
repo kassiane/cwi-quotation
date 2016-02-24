@@ -8,14 +8,14 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 
-import com.kassiane.cwi.quotation.dao.CurrencyDAO;
+import com.kassiane.cwi.quotation.dao.CBCurrencyDAO;
 import com.kassiane.cwi.quotation.domain.CBCurrency;
 
-public class CurrencyService {
+public class CBCurrencyService {
 
-    private final CurrencyDAO currencyDAO;
+    private final CBCurrencyDAO currencyDAO;
 
-    public CurrencyService(final CurrencyDAO currencyDAO) {
+    public CBCurrencyService(final CBCurrencyDAO currencyDAO) {
         this.currencyDAO = currencyDAO;
     }
 

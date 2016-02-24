@@ -7,15 +7,15 @@ import java.util.Map;
 import java.util.Scanner;
 
 import com.kassiane.cwi.quotation.checker.DateChecker;
-import com.kassiane.cwi.quotation.dao.CurrencyDAO;
+import com.kassiane.cwi.quotation.dao.CBCurrencyDAO;
 import com.kassiane.cwi.quotation.domain.CBCurrency;
 import com.kassiane.cwi.quotation.exception.CurrencyNotAvailableException;
 
-public class CurrencyDAOImpl implements CurrencyDAO {
+public class CBCurrencyDAOImpl implements CBCurrencyDAO {
 
     private final URL currencyCsv;
 
-    public CurrencyDAOImpl(final URL currencyCsv) {
+    public CBCurrencyDAOImpl(final URL currencyCsv) {
         this.currencyCsv = currencyCsv;
     }
 

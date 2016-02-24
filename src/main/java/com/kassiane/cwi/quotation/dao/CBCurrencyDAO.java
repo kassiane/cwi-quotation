@@ -5,7 +5,7 @@ import java.util.Map;
 
 import com.kassiane.cwi.quotation.domain.CBCurrency;
 
-public interface CurrencyDAO {
+public interface CBCurrencyDAO {
 
     public Map<String, CBCurrency> listAll() throws IOException;
 
