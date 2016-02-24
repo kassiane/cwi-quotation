@@ -1,4 +1,4 @@
-package com.kassiane.cwi.quotation.reader;
+package com.kassiane.cwi.quotation.data.provider;
 
 import java.net.MalformedURLException;
 import java.net.URL;
