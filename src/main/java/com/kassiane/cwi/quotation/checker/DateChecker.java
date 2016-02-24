@@ -26,4 +26,9 @@ public class DateChecker {
         }
         return dateD;
     }
+
+    public String getFormattedDate(final Date date) {
+        final DateFormat format = new SimpleDateFormat("dd/MM/yyyy", this.locale);
+        return format.format(date);
+    }
 }

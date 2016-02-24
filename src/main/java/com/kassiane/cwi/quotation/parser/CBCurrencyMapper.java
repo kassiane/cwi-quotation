@@ -1,7 +1,5 @@
 package com.kassiane.cwi.quotation.parser;
 
-import java.util.Date;
-
 import com.kassiane.cwi.quotation.checker.CBCurrencyParser;
 import com.kassiane.cwi.quotation.checker.DateChecker;
 import com.kassiane.cwi.quotation.domain.CBCurrency;
@@ -30,7 +28,7 @@ public class CBCurrencyMapper {
             final String sellParity = items[7];
 
             currency = new CBCurrency(this.parseName(name), this.parseCode(code), type, buyTax, sellTax, buyParity, sellParity,
-                    this.parseDate(date));
+                    this.dateChecker.parseDate(this.parseDate(date)));
         }
         return currency;
     }
@@ -51,7 +49,7 @@ public class CBCurrencyMapper {
         return this.cbcurrencyChecker.checkMonetaryValues(value);
     }
 
-    private Date parseDate(final String date) {
+    private String parseDate(final String date) {
         return this.cbcurrencyChecker.checkDate(date);
     }
 

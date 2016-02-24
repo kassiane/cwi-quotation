@@ -22,13 +22,7 @@ public class CBCurrencyParser {
      *
      * Restrictions:
      *
-     * - For non-working days (Saturday and Sunday, ignoring holidays) takes the
-     * quotation from the
      *
-     * immediately preceding business day. If the quotation of the previous day
-     * is not available, an
-     *
-     * exception must be thrown;
      *
      * - If the quotation date is not available, an exception must be thrown;
      *
@@ -57,16 +51,24 @@ public class CBCurrencyParser {
         return value;
     }
 
-    public Date checkDate(final String dateToCheck) {
+    /**
+     * For non-working days (Saturday and Sunday, ignoring holidays) takes the
+     * quotation from the immediately preceding business day. If the quotation
+     * of the previous day is not available, an exception must be thrown;
+     *
+     * @param dateToCheck
+     * @return date when it is weekday, new valid date otherwise
+     */
+    public String checkDate(final String dateToCheck) {
         final Date date = this.dateChecker.parseDate(dateToCheck);
         final Calendar calendar = Calendar.getInstance();
         calendar.setTime(date);
 
         if (calendar.get(Calendar.DAY_OF_WEEK) == Calendar.SUNDAY) {
             calendar.add(Calendar.DAY_OF_MONTH, -2);
-        } else if (calendar.get(Calendar.DAY_OF_WEEK) == Calendar.SUNDAY) {
+        } else if (calendar.get(Calendar.DAY_OF_WEEK) == Calendar.SATURDAY) {
             calendar.add(Calendar.DAY_OF_MONTH, -1);
         }
-        return new Date(calendar.getTimeInMillis());
+        return this.dateChecker.getFormattedDate(new Date(calendar.getTimeInMillis()));
     }
 }
