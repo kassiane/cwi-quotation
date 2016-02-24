@@ -1,26 +1,27 @@
 package com.kassiane.cwi.quotation.domain;
 
+import java.math.BigDecimal;
 import java.util.Date;
 
 public class CBCurrency {
     private final String name;
     private final String code;
     private final String type;
-    private final String buy_tax;
-    private final String sell_tax;
-    private final String buy_parity;
-    private final String sell_parity;
+    private final BigDecimal buyTax;
+    private final BigDecimal sellTax;
+    private final BigDecimal buyParity;
+    private final BigDecimal sellParity;
     private final Date date;
 
-    public CBCurrency(final String name, final String code, final String type, final String buy_tax, final String sell_tax,
-            final String buy_parity, final String sell_parity, final Date date) {
+    public CBCurrency(final String name, final String code, final String type, final BigDecimal buy_tax,
+            final BigDecimal sell_tax, final BigDecimal buy_parity, final BigDecimal sell_parity, final Date date) {
         this.name = name;
         this.code = code;
         this.type = type;
-        this.buy_tax = buy_tax;
-        this.sell_tax = sell_tax;
-        this.buy_parity = buy_parity;
-        this.sell_parity = sell_parity;
+        this.buyTax = buy_tax;
+        this.sellTax = sell_tax;
+        this.buyParity = buy_parity;
+        this.sellParity = sell_parity;
         this.date = date;
     }
 
@@ -36,20 +37,20 @@ public class CBCurrency {
         return this.type;
     }
 
-    public String getBuy_tax() {
-        return this.buy_tax;
+    public BigDecimal getBuyTax() {
+        return this.buyTax;
     }
 
-    public String getSell_tax() {
-        return this.sell_tax;
+    public BigDecimal getSellTax() {
+        return this.sellTax;
     }
 
-    public String getBuy_parity() {
-        return this.buy_parity;
+    public BigDecimal getBuyParity() {
+        return this.buyParity;
     }
 
-    public String getSell_parity() {
-        return this.sell_parity;
+    public BigDecimal getSellParity() {
+        return this.sellParity;
     }
 
     public Date getDate() {
@@ -58,8 +59,8 @@ public class CBCurrency {
 
     @Override
     public String toString() {
-        return "Currency [name=" + this.name + ", code=" + this.code + ", type=" + this.type + ", buy_tax=" + this.buy_tax
-                + ", sell_tax=" + this.sell_tax + ", buy_parity=" + this.buy_parity + ", sell_parity=" + this.sell_parity
+        return "Currency [name=" + this.name + ", code=" + this.code + ", type=" + this.type + ", buy_tax=" + this.buyTax
+                + ", sell_tax=" + this.sellTax + ", buy_parity=" + this.buyParity + ", sell_parity=" + this.sellParity
                 + ", date=" + this.date + "]";
     }
 

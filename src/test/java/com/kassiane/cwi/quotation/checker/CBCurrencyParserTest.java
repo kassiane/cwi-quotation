@@ -7,12 +7,12 @@ import org.junit.Test;
 
 public class CBCurrencyParserTest {
 
-    final CBCurrencyParser cbCurrencyParser;
+    final CBCurrencyChecker cbCurrencyParser;
     final DateChecker dateChecker;
 
     public CBCurrencyParserTest() {
         this.dateChecker = new DateChecker(new Locale("pt", "BR"));
-        this.cbCurrencyParser = new CBCurrencyParser(this.dateChecker);
+        this.cbCurrencyParser = new CBCurrencyChecker(this.dateChecker);
     }
 
     @Test

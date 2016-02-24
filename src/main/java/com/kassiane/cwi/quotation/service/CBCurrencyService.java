@@ -2,13 +2,18 @@ package com.kassiane.cwi.quotation.service;
 
 import java.io.IOException;
 import java.math.BigDecimal;
-import java.text.DateFormat;
+import java.math.MathContext;
+import java.net.URL;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 
+import com.kassiane.cwi.quotation.checker.CBCurrencyChecker;
+import com.kassiane.cwi.quotation.checker.DateChecker;
 import com.kassiane.cwi.quotation.dao.CBCurrencyDAO;
+import com.kassiane.cwi.quotation.data.provider.DataProviderReader;
+import com.kassiane.cwi.quotation.data.provider.DataProviderUrl;
+import com.kassiane.cwi.quotation.domain.CBCurrency;
 
 public class CBCurrencyService {
 
@@ -18,25 +23,28 @@ public class CBCurrencyService {
         this.currencyDAO = currencyDAO;
     }
 
-    public BigDecimal currencyQuotation(final String from, final String to, final Number value, final String quotation)
-            throws IOException {
-
-        // validate entries here
-
-        // get currencies from datasource
-        // final CBCurrency fromCurrency = this.currencyDAO.getCurrency(from);
-        // final CBCurrency toCurrency = this.currencyDAO.getCurrency(to);
-
+    public BigDecimal currencyQuotation(final String from, final String to, final float value, final String quotation)
+            throws IOException, ParseException {
         final Locale ptBr = new Locale("pt", "BR");
-        final DateFormat format = new SimpleDateFormat("dd/mm/yyyy", ptBr);
-        Date dateD = null;
-        try {
-            dateD = format.parse(quotation);
-        } catch (final ParseException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
+        final DateChecker dateChecker = new DateChecker(ptBr);
+        final CBCurrencyChecker cbcurrencyChecker = new CBCurrencyChecker(dateChecker);
+        final DataProviderUrl dataProviderUrl = new DataProviderUrl();
+        final DataProviderReader dataProviderReader = new DataProviderReader();
+        // validate entries here
+        cbcurrencyChecker.checkDate(quotation);
+        cbcurrencyChecker.checkMonetaryValue(value);
 
-        return new BigDecimal(0);
+        final Date date = dateChecker.parseDate(quotation);
+        final URL url = dataProviderUrl.getUrl(date);
+
+        final String data = dataProviderReader.read(url);
+        final CBCurrency fromCurrency = this.currencyDAO.getCurrency(from, data);
+        final CBCurrency toCurrency = this.currencyDAO.getCurrency(to, data);
+
+        final BigDecimal proportion = fromCurrency.getBuyTax().divide(toCurrency.getBuyTax());
+
+        final BigDecimal bigDecimalValue = new BigDecimal(Float.toString(value));
+
+        return proportion.multiply(bigDecimalValue, new MathContext(2));
     }
 }

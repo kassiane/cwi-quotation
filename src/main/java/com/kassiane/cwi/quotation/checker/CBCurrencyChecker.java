@@ -3,11 +3,13 @@ package com.kassiane.cwi.quotation.checker;
 import java.util.Calendar;
 import java.util.Date;
 
-public class CBCurrencyParser {
+public class CBCurrencyChecker {
+
+    private final String negativeValue = "Value must not be negative or zero.";
 
     private final DateChecker dateChecker;
 
-    public CBCurrencyParser(final DateChecker dateChecker) {
+    public CBCurrencyChecker(final DateChecker dateChecker) {
         this.dateChecker = dateChecker;
     }
 
@@ -36,19 +38,10 @@ public class CBCurrencyParser {
      * - You must convert the currency through rate "Taxa Compra".
      */
 
-    public String checkCode(final String code) {
-        // TODO Auto-generated method stub
-        return code;
-    }
-
-    public String checkType(final String type) {
-        // TODO Auto-generated method stub
-        return type;
-    }
-
-    public String checkMonetaryValues(final String value) {
-        // TODO Auto-generated method stub
-        return value;
+    public void checkMonetaryValue(final float value) {
+        if (value <= 0) {
+            throw new IllegalArgumentException(this.negativeValue);
+        }
     }
 
     /**

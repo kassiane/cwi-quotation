@@ -4,6 +4,7 @@ import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
+import java.text.ParseException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
@@ -22,7 +23,7 @@ public class CBCurrencyDAOImpl implements CBCurrencyDAO {
     }
 
     @Override
-    public Map<String, CBCurrency> listAll(final String data) throws IOException {
+    public Map<String, CBCurrency> listAll(final String data) throws IOException, ParseException {
         final InputStream stream = new ByteArrayInputStream(data.getBytes(StandardCharsets.UTF_8));
         final Scanner scanner = new Scanner(stream);
         final Map<String, CBCurrency> currencies = new HashMap<String, CBCurrency>();
@@ -38,7 +39,7 @@ public class CBCurrencyDAOImpl implements CBCurrencyDAO {
     }
 
     @Override
-    public CBCurrency getCurrency(final String data, final String name) throws IOException {
+    public CBCurrency getCurrency(final String data, final String name) throws IOException, ParseException {
         final Map<String, CBCurrency> map = this.listAll(data);
 
         final CBCurrency returnCurrency = map.get(name);
