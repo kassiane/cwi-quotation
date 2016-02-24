@@ -9,7 +9,6 @@ import java.util.Date;
 import java.util.Locale;
 
 import com.kassiane.cwi.quotation.dao.CBCurrencyDAO;
-import com.kassiane.cwi.quotation.domain.CBCurrency;
 
 public class CBCurrencyService {
 
@@ -25,8 +24,8 @@ public class CBCurrencyService {
         // validate entries here
 
         // get currencies from datasource
-        final CBCurrency fromCurrency = this.currencyDAO.getCurrency(from);
-        final CBCurrency toCurrency = this.currencyDAO.getCurrency(to);
+        // final CBCurrency fromCurrency = this.currencyDAO.getCurrency(from);
+        // final CBCurrency toCurrency = this.currencyDAO.getCurrency(to);
 
         final Locale ptBr = new Locale("pt", "BR");
         final DateFormat format = new SimpleDateFormat("dd/mm/yyyy", ptBr);

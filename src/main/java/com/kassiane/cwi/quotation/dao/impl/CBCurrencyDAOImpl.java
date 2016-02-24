@@ -1,59 +1,45 @@
 package com.kassiane.cwi.quotation.dao.impl;
 
+import java.io.ByteArrayInputStream;
 import java.io.IOException;
-import java.net.URL;
+import java.io.InputStream;
+import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
 
-import com.kassiane.cwi.quotation.checker.DateChecker;
 import com.kassiane.cwi.quotation.dao.CBCurrencyDAO;
 import com.kassiane.cwi.quotation.domain.CBCurrency;
 import com.kassiane.cwi.quotation.exception.CurrencyNotAvailableException;
+import com.kassiane.cwi.quotation.parser.CBCurrencyMapper;
 
 public class CBCurrencyDAOImpl implements CBCurrencyDAO {
 
-    private final URL currencyCsv;
+    private final CBCurrencyMapper cbcurrencyParser;
 
-    public CBCurrencyDAOImpl(final URL currencyCsv) {
-        this.currencyCsv = currencyCsv;
+    public CBCurrencyDAOImpl(final CBCurrencyMapper cbcurrencyParser) {
+        this.cbcurrencyParser = cbcurrencyParser;
     }
 
     @Override
-    public Map<String, CBCurrency> listAll() throws IOException {
-        final Scanner scanner = new Scanner(this.currencyCsv.openStream());
+    public Map<String, CBCurrency> listAll(final String data) throws IOException {
+        final InputStream stream = new ByteArrayInputStream(data.getBytes(StandardCharsets.UTF_8));
+        final Scanner scanner = new Scanner(stream);
+        final Map<String, CBCurrency> currencies = new HashMap<String, CBCurrency>();
         String line = null;
-        String items[] = null;
 
-        final Map<String, CBCurrency> map = new HashMap<String, CBCurrency>();
-
-        final DateChecker dateChecker = new DateChecker(null);
         while (scanner.hasNextLine()) {
             line = scanner.nextLine();
-            items = line.split(";");
-            if (items.length == 8) {
-                final String date = items[0];
-                final String code = items[1];
-                final String type = items[2];
-                final String name = items[3];
-                final String buy_tax = items[4];
-                final String sell_tax = items[5];
-                final String buy_parity = items[6];
-                final String sell_parity = items[7];
-
-                final CBCurrency currency = new CBCurrency(name, code, type, buy_tax, sell_tax, buy_parity, sell_parity,
-                        dateChecker.check(date));
-                map.put(name, currency);
-                System.out.println(currency.toString());
-            }
+            final CBCurrency CBCurrency = this.cbcurrencyParser.mapCBCurrency(line);
+            currencies.put(CBCurrency.getName(), CBCurrency);
         }
         scanner.close();
-        return map;
+        return currencies;
     }
 
     @Override
-    public CBCurrency getCurrency(final String name) throws IOException {
-        final Map<String, CBCurrency> map = this.listAll();
+    public CBCurrency getCurrency(final String data, final String name) throws IOException {
+        final Map<String, CBCurrency> map = this.listAll(data);
 
         final CBCurrency returnCurrency = map.get(name);
 

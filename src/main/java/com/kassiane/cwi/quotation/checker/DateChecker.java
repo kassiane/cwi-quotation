@@ -11,10 +11,10 @@ public class DateChecker {
     private final Locale locale;
 
     public DateChecker(final Locale locale) {
-        this.locale = new Locale("pt", "BR");
+        this.locale = locale;
     }
 
-    public Date check(final String date) {
+    public Date parseDate(final String date) {
 
         final DateFormat format = new SimpleDateFormat("dd/MM/yyyy", this.locale);
         Date dateD = null;

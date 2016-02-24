@@ -1,6 +1,5 @@
 package com.kassiane.cwi.quotation.data.provider;
 
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Calendar;
 import java.util.Date;
@@ -9,6 +8,8 @@ import java.util.GregorianCalendar;
 import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
+
+import com.kassiane.cwi.quotation.exception.QuotationDateNotAvailableException;
 
 public class DataProviderReaderTest {
 
@@ -21,8 +22,8 @@ public class DataProviderReaderTest {
         dataProviderReader = new DataProviderReader();
     }
 
-    @Test(expected = FileNotFoundException.class)
-    public void shouldReturnErrorWhenFileDoesNotExist() throws IOException {
+    @Test(expected = QuotationDateNotAvailableException.class)
+    public void shouldReturnErrorWhenQuotationDoesNotExist() throws IOException {
         final Calendar calendar = new GregorianCalendar();
         calendar.add(Calendar.DAY_OF_MONTH, 1);
 

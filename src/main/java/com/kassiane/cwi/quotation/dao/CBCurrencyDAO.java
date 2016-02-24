@@ -7,7 +7,7 @@ import com.kassiane.cwi.quotation.domain.CBCurrency;
 
 public interface CBCurrencyDAO {
 
-    public Map<String, CBCurrency> listAll() throws IOException;
+    Map<String, CBCurrency> listAll(String data) throws IOException;
 
-    public CBCurrency getCurrency(String name) throws IOException;
+    CBCurrency getCurrency(String data, String name) throws IOException;
 }
