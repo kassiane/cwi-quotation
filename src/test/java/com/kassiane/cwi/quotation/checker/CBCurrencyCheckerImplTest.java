@@ -54,4 +54,51 @@ public class CBCurrencyCheckerImplTest {
         // then
         Assert.assertTrue(checked);
     }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void shoudlReturnErrorWhenNameIsNull() throws IllegalArgumentException {
+        // given
+        final String given = null;
+        // when
+        subject.checkName(given);
+        // then (expected = IllegalArgumentException.class)
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void shoudlReturnErrorWhenNameIsEmpty() throws IllegalArgumentException {
+        // given
+        final String given = "";
+        // when
+        subject.checkName(given);
+        // then (expected = IllegalArgumentException.class)
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void shoudlReturnErrorWhenNameHasOnlyBlankSpaces() throws IllegalArgumentException {
+        // given
+        final String given = "     ";
+        // when
+        subject.checkName(given);
+        // then (expected = IllegalArgumentException.class)
+    }
+
+    @Test
+    public void shoudlValidateNameSuccessfully() throws IllegalArgumentException {
+        // given
+        final String given = "EUR";
+        // when
+        final boolean checked = subject.checkName(given);
+        // then
+        Assert.assertTrue(checked);
+    }
+
+    @Test
+    public void shoudlValidateNameWithBlankSpacesSuccessfully() throws IllegalArgumentException {
+        // given
+        final String given = "   AUD   ";
+        // when
+        final boolean checked = subject.checkName(given);
+        // then
+        Assert.assertTrue(checked);
+    }
 }
