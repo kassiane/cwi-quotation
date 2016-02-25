@@ -6,6 +6,12 @@ import java.util.Map;
 import com.kassiane.cwi.quotation.domain.CBCurrency;
 import com.kassiane.cwi.quotation.mapper.CBCurrencyMapper;
 
+/**
+ * Class to mock {@link CBCurrencyMapper}.
+ *
+ * @author kassi
+ *
+ */
 public class CBCurrencyMapperMock implements CBCurrencyMapper {
 
     private final Map<String, CBCurrency> cbcurrency;

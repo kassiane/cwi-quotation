@@ -15,6 +15,12 @@ import com.kassiane.cwi.quotation.data.provider.DataProviderUrl;
 import com.kassiane.cwi.quotation.date.parser.DateParser;
 import com.kassiane.cwi.quotation.domain.CBCurrency;
 
+/**
+ * Entity that makes available operations for {@link CBCurency}.
+ * 
+ * @author kassi
+ *
+ */
 public class CBCurrencyService {
 
     private final CBCurrencyParser cbcurrencyParser;

@@ -6,6 +6,12 @@ import java.util.Map;
 
 import com.kassiane.cwi.quotation.domain.CBCurrency;
 
+/**
+ * Interface of Currency Parser.
+ * 
+ * @author kassi
+ *
+ */
 public interface CBCurrencyParser {
 
     Map<String, CBCurrency> listAll(String data) throws IOException, ParseException;

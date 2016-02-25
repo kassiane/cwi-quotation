@@ -14,6 +14,13 @@ import com.kassiane.cwi.quotation.domain.CBCurrency;
 import com.kassiane.cwi.quotation.exception.CurrencyNotAvailableException;
 import com.kassiane.cwi.quotation.mapper.CBCurrencyMapper;
 
+/**
+ * Implementation of {@link CBCurrencyParser}. Entity that lists all Currencies
+ * from a datasource or finds a specific one.
+ *
+ * @author kassi
+ *
+ */
 public class CBCurrencyParserImpl implements CBCurrencyParser {
 
     private final CBCurrencyMapper cbcurrencyMapper;

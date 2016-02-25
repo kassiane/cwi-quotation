@@ -8,6 +8,12 @@ import java.util.Locale;
 
 import com.kassiane.cwi.quotation.date.parser.DateParser;
 
+/**
+ * Parses a date following a given format.
+ * 
+ * @author kassi
+ *
+ */
 public class DateParserImpl implements DateParser {
 
     private final Locale locale;

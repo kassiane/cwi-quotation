@@ -1,5 +1,12 @@
 package com.kassiane.cwi.quotation.exception;
 
+/**
+ * Exception that is thrown when quotation date is not available (Example:
+ * holidays).
+ *
+ * @author kassi
+ *
+ */
 public class QuotationDateNotAvailableException extends RuntimeException {
 
     private static final long serialVersionUID = 7276666264188583867L;

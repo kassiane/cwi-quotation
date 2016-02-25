@@ -8,6 +8,12 @@ import java.util.Map.Entry;
 
 import com.kassiane.cwi.quotation.domain.CBCurrency;
 
+/**
+ * Class to give generated Currencies.
+ *
+ * @author kassi
+ *
+ */
 public class CBCurrencyDataProvider {
     public Map<String, CBCurrency> generateCbcurrencyList(final int currenciesNumber) {
         final Map<String, CBCurrency> generatedList = new HashMap<String, CBCurrency>();

@@ -9,7 +9,8 @@ import com.kassiane.cwi.quotation.exception.QuotationDateNotAvailableException;
 
 /**
  * Entity that reads a remote quotation file and returns a String with its data.
- *
+ * Returns an error in case quotation file does not exist.
+ * 
  * @author kassi
  *
  */
@@ -19,13 +20,13 @@ public class DataProvider {
 
     public String read(final URL url) throws IOException, QuotationDateNotAvailableException {
         Scanner scanner = null;
-        String content = "";
+        final StringBuilder content = new StringBuilder();
         scanner = this.openUrlStream(url);
         while (scanner.hasNextLine()) {
-            content += scanner.nextLine() + "\n";
+            content.append(scanner.nextLine()).append("\n");
         }
         scanner.close();
-        return content;
+        return content.toString();
     }
 
     private Scanner openUrlStream(final URL url) throws IOException, QuotationDateNotAvailableException {

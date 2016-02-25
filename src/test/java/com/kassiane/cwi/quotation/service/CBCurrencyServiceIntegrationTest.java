@@ -20,6 +20,12 @@ import com.kassiane.cwi.quotation.date.parser.impl.DateParserImpl;
 import com.kassiane.cwi.quotation.mapper.CBCurrencyMapper;
 import com.kassiane.cwi.quotation.mapper.impl.CBCurrencyMapperImpl;
 
+/**
+ * Test Integration class of {@link CBCurrencyService}.
+ *
+ * @author kassi
+ *
+ */
 public class CBCurrencyServiceIntegrationTest {
 
     private static Locale locale;

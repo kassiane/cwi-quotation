@@ -5,6 +5,12 @@ import java.util.Date;
 
 import com.kassiane.cwi.quotation.date.parser.DateParser;
 
+/**
+ * Class to mock {@link DateParser}.
+ *
+ * @author kassi
+ *
+ */
 public class DateParserMock implements DateParser {
 
     private final Date givenDate;

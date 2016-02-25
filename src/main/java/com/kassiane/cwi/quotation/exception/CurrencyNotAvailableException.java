@@ -1,5 +1,11 @@
 package com.kassiane.cwi.quotation.exception;
 
+/**
+ * Exception that is thrown when a currency is not available.
+ *
+ * @author kassi
+ *
+ */
 public class CurrencyNotAvailableException extends RuntimeException {
 
     private static final long serialVersionUID = -1648884231448028699L;

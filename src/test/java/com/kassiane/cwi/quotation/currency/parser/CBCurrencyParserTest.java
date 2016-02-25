@@ -16,6 +16,12 @@ import com.kassiane.cwi.quotation.exception.CurrencyNotAvailableException;
 import com.kassiane.cwi.quotation.mapper.CBCurrencyMapper;
 import com.kassiane.cwi.quotation.mock.CBCurrencyMapperMock;
 
+/**
+ * Test of class {@link CBCurrencyParser}.
+ *
+ * @author kassi
+ *
+ */
 public class CBCurrencyParserTest {
 
     @Test

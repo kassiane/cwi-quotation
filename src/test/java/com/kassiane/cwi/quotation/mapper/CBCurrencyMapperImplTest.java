@@ -18,7 +18,7 @@ import com.kassiane.cwi.quotation.mock.DateParserMock;
  * @author kassi
  *
  */
-public class CBCurrencyMapperTest {
+public class CBCurrencyMapperImplTest {
 
     @Test
     public void shouldMapCurrencyCorrectly() throws IllegalArgumentException, ParseException {

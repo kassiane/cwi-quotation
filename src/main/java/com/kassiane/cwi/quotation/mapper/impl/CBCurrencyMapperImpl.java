@@ -10,6 +10,13 @@ import com.kassiane.cwi.quotation.date.parser.DateParser;
 import com.kassiane.cwi.quotation.domain.CBCurrency;
 import com.kassiane.cwi.quotation.mapper.CBCurrencyMapper;
 
+/**
+ * Implementation of {@link CBCurrencyMapper}. Entity that maps a given string
+ * array to a new {@link CBCurrency}
+ *
+ * @author kassi
+ *
+ */
 public class CBCurrencyMapperImpl implements CBCurrencyMapper {
 
     private static final int CURRENCY_DATA_LENGTH = 8;

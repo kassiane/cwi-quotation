@@ -5,6 +5,13 @@ import java.text.ParseException;
 import com.kassiane.cwi.quotation.checker.CBCurrencyChecker;
 import com.kassiane.cwi.quotation.date.parser.DateParser;
 
+/**
+ * Implementation of {@link CBCurrencyChecker}. Entity that checks if given
+ * parameters are valid.
+ * 
+ * @author kassi
+ *
+ */
 public class CBCurrencyCheckerImpl implements CBCurrencyChecker {
 
     private static final String NEGATIVE_VALUE = "Value must not be negative or zero.";
