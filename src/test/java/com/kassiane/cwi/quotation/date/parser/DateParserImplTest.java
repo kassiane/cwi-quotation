@@ -19,7 +19,7 @@ import com.kassiane.cwi.quotation.date.parser.impl.DateParserImpl;
  * @author kassi
  *
  */
-public class DateParserTest {
+public class DateParserImplTest {
 
     private static DateParser subject;
 

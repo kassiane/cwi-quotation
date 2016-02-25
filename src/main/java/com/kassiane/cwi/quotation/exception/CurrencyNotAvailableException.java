@@ -2,9 +2,6 @@ package com.kassiane.cwi.quotation.exception;
 
 public class CurrencyNotAvailableException extends RuntimeException {
 
-    /**
-     *
-     */
     private static final long serialVersionUID = -1648884231448028699L;
 
     public CurrencyNotAvailableException() {

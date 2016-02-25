@@ -15,7 +15,7 @@ import com.kassiane.cwi.quotation.exception.QuotationDateNotAvailableException;
  */
 public class DataProvider {
 
-    private static final String quotationNotAvailable = "Quotation does not exist for selected date.";
+    private static final String QUOTATION_NOT_AVAILABLE = "Quotation does not exist for selected date.";
 
     public String read(final URL url) throws IOException, QuotationDateNotAvailableException {
         Scanner scanner = null;
@@ -32,7 +32,7 @@ public class DataProvider {
         try {
             return new Scanner(url.openStream());
         } catch (final FileNotFoundException e) {
-            throw new QuotationDateNotAvailableException(this.quotationNotAvailable, e);
+            throw new QuotationDateNotAvailableException(QUOTATION_NOT_AVAILABLE, e);
         }
     }
 }

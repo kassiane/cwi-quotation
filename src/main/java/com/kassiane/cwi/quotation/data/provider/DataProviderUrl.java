@@ -17,12 +17,12 @@ import java.util.Date;
  */
 public class DataProviderUrl {
 
-    private final String baseUrl = "http://www4.bcb.gov.br/Download/fechamento/";
+    private final static String BASE_URL = "http://www4.bcb.gov.br/Download/fechamento/";
 
     public URL getUrl(final Date date) throws MalformedURLException {
         final String filename = this.formatFileName(date);
 
-        return new URL(this.baseUrl + filename);
+        return new URL(BASE_URL + filename);
     }
 
     private String formatFileName(final Date date) {

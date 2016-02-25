@@ -2,9 +2,6 @@ package com.kassiane.cwi.quotation.exception;
 
 public class QuotationDateNotAvailableException extends RuntimeException {
 
-    /**
-     *
-     */
     private static final long serialVersionUID = 7276666264188583867L;
 
     public QuotationDateNotAvailableException() {

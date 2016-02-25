@@ -16,7 +16,7 @@ import com.kassiane.cwi.quotation.mock.DateParserMock;
  * @author kassi
  *
  */
-public class CBCurrencyCheckerTest {
+public class CBCurrencyCheckerImplTest {
 
     private static DateParser dateParser;
     private static CBCurrencyChecker subject;
