@@ -17,13 +17,16 @@ import com.kassiane.cwi.quotation.mapper.CBCurrencyMapper;
 public class CBCurrencyParserImpl implements CBCurrencyParser {
 
     private final CBCurrencyMapper cbcurrencyMapper;
+    private static final String NULL_DATA = "There is no data to list.";
 
     public CBCurrencyParserImpl(final CBCurrencyMapper cbcurrencyMapper) {
         this.cbcurrencyMapper = cbcurrencyMapper;
     }
 
     @Override
-    public Map<String, CBCurrency> listAll(final String data) throws IOException, ParseException {
+    public Map<String, CBCurrency> listAll(final String data) throws IllegalArgumentException, ParseException {
+        if (data == null)
+            throw new IllegalArgumentException(NULL_DATA);
         final InputStream stream = new ByteArrayInputStream(data.getBytes(StandardCharsets.UTF_8));
         final Scanner scanner = new Scanner(stream);
         final Map<String, CBCurrency> currencies = new HashMap<String, CBCurrency>();
