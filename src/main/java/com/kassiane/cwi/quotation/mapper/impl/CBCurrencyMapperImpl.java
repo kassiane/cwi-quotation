@@ -20,7 +20,7 @@ import com.kassiane.cwi.quotation.mapper.CBCurrencyMapper;
 public class CBCurrencyMapperImpl implements CBCurrencyMapper {
 
     private static final int CURRENCY_DATA_LENGTH = 8;
-    private static final String MONETARY_VALUE_PATTERN = "###,###.######";
+    private static final String MONETARY_VALUE_PATTERN = "##,###.#########";
     private static final String INVALID_NBR_COLUMNS = "Invalid number of columns.";
 
     private final DateParser dateParser;
@@ -56,7 +56,6 @@ public class CBCurrencyMapperImpl implements CBCurrencyMapper {
         symbols.setDecimalSeparator(',');
         final DecimalFormat decimalFormat = new DecimalFormat(MONETARY_VALUE_PATTERN, symbols);
         decimalFormat.setParseBigDecimal(true);
-
         return (BigDecimal) decimalFormat.parse(value);
     }
 

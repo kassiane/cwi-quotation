@@ -62,4 +62,18 @@ public class CBCurrencyServiceIntegrationTest {
 
         Assert.assertEquals(thenValue, calculatedValue.floatValue(), 2);
     }
+
+    @Test
+    public void shouldCalculateQuotationCorrectlyWhenPrecisionShouldBeGreaterThanTwo() throws IOException, ParseException {
+        final String givenFrom = "IDR";
+        final String givenTo = "USD";
+        final float givenValue = 130.50f;
+        final String givenDate = "23/02/2016";
+
+        final float thenValue = 0.00f;
+
+        final BigDecimal calculatedValue = cbcurrencyService.currencyQuotation(givenFrom, givenTo, givenValue, givenDate);
+
+        Assert.assertEquals(thenValue, calculatedValue.floatValue(), 2);
+    }
 }

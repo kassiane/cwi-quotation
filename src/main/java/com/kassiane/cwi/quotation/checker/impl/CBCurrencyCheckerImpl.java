@@ -28,9 +28,8 @@ public class CBCurrencyCheckerImpl implements CBCurrencyChecker {
 
     @Override
     public boolean checkMonetaryValue(final float value) {
-        if (value <= 0) {
+        if (value <= 0)
             throw new IllegalArgumentException(NEGATIVE_VALUE + value);
-        }
         return true;
     }
 

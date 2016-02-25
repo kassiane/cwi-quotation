@@ -50,4 +50,17 @@ public class CBCurrencyMapperImplTest {
         subject.mapCBCurrency(given.split(";"));
         // then (expected = IllegalArgumentException.class)
     }
+
+    @Test(expected = ParseException.class)
+    public void shouldReturnErrorWhenMonetaryNumberInInvalidFormat() throws IllegalArgumentException, ParseException {
+        // given
+        final String given = "23/02/2016;123;A;EUR;a.234;2,1515;3,1415;2,1515";
+        final Calendar givenCalendar = new GregorianCalendar();
+        givenCalendar.set(2016, 01, 23);
+        final DateParser dateParser = new DateParserMock(givenCalendar.getTime());
+        final CBCurrencyMapper subject = new CBCurrencyMapperImpl(dateParser);
+        // when
+        subject.mapCBCurrency(given.split(";"));
+        // then (expected = ParseException.class)
+    }
 }
