@@ -1,57 +1,28 @@
 package com.kassiane.cwi.quotation.checker;
 
+import java.util.Date;
+
 import org.junit.Assert;
+import org.junit.BeforeClass;
 import org.junit.Test;
 
+import com.kassiane.cwi.quotation.mock.DateParserMock;
+
 /**
- * Test of class {@link CBCurrencyChecker}.
+ * Test of class {@link CBCurrencyCheckerImpl}.
  *
  * @author kassi
  *
  */
 public class CBCurrencyCheckerTest {
 
-    final CBCurrencyChecker subject;
+    private static DateParser dateParser;
+    private static CBCurrencyChecker subject;
 
-    public CBCurrencyCheckerTest() {
-        this.subject = new CBCurrencyChecker();
-    }
-
-    @Test(expected = IllegalArgumentException.class)
-    public void shoudlReturnErrorWhenMonthGreaterThanPossible() throws IllegalArgumentException {
-        // given
-        final String given = "12/40/2016";
-        // when
-        this.subject.checkDate(given);
-        // then (expected = IllegalArgumentException.class)
-    }
-
-    @Test(expected = IllegalArgumentException.class)
-    public void shoudlReturnErrorWhenDayGreaterThanPossibleInMonth() throws IllegalArgumentException {
-        // given
-        final String given = "30/02/2016";
-        // when
-        this.subject.checkDate(given);
-        // then (expected = IllegalArgumentException.class)
-    }
-
-    @Test
-    public void shoudlCheckSuccessfullyValidDate() throws IllegalArgumentException {
-        // given
-        final String given = "20/02/2016";
-        // when
-        final boolean checked = this.subject.checkDate(given);
-        // then
-        Assert.assertTrue(checked);
-    }
-
-    @Test(expected = IllegalArgumentException.class)
-    public void shoudlReturnErrorWhenDateWithoutSlash() throws IllegalArgumentException {
-        // given
-        final String given = "20022016";
-        // when
-        this.subject.checkDate(given);
-        // then (expected = IllegalArgumentException.class)
+    @BeforeClass
+    public static void setUp() {
+        dateParser = new DateParserMock(new Date());
+        subject = new CBCurrencyCheckerImpl(dateParser);
     }
 
     @Test(expected = IllegalArgumentException.class)
@@ -59,7 +30,7 @@ public class CBCurrencyCheckerTest {
         // given
         final float given = -123.0f;
         // when
-        this.subject.checkMonetaryValue(given);
+        subject.checkMonetaryValue(given);
         // then (expected = IllegalArgumentException.class)
     }
 
@@ -68,7 +39,17 @@ public class CBCurrencyCheckerTest {
         // given
         final float given = 0f;
         // when
-        this.subject.checkMonetaryValue(given);
+        subject.checkMonetaryValue(given);
         // then (expected = IllegalArgumentException.class)
+    }
+
+    @Test
+    public void shoudlValidateValueSuccessfully() throws IllegalArgumentException {
+        // given
+        final float given = 156.54f;
+        // when
+        final boolean checked = subject.checkMonetaryValue(given);
+        // then
+        Assert.assertTrue(checked);
     }
 }

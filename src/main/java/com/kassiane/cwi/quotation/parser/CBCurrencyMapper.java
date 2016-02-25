@@ -48,7 +48,7 @@ public class CBCurrencyMapper {
         return (BigDecimal) decimalFormat.parse(value);
     }
 
-    private Date parseDate(final String date) {
+    private Date parseDate(final String date) throws ParseException {
         return this.dateParser.parseDate(date);
     }
 

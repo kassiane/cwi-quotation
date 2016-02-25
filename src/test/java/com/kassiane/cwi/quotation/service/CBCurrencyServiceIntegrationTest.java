@@ -10,7 +10,9 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 import com.kassiane.cwi.quotation.checker.CBCurrencyChecker;
+import com.kassiane.cwi.quotation.checker.CBCurrencyCheckerImpl;
 import com.kassiane.cwi.quotation.checker.DateParser;
+import com.kassiane.cwi.quotation.checker.DateParserImpl;
 import com.kassiane.cwi.quotation.dao.CBCurrencyParser;
 import com.kassiane.cwi.quotation.dao.impl.CBCurrencyParserImpl;
 import com.kassiane.cwi.quotation.data.provider.DataProvider;
@@ -31,12 +33,12 @@ public class CBCurrencyServiceIntegrationTest {
     @BeforeClass
     public static void setUp() {
         locale = new Locale("pt", "BR");
-        dateParser = new DateParser(locale);
+        dateParser = new DateParserImpl(locale);
         cbcurrencyMapper = new CBCurrencyMapper(dateParser);
         cbcurrencyParser = new CBCurrencyParserImpl(cbcurrencyMapper);
         dataProviderUrl = new DataProviderUrl();
         dataProvider = new DataProvider();
-        cbcurrencyChecker = new CBCurrencyChecker();
+        cbcurrencyChecker = new CBCurrencyCheckerImpl(dateParser);
         cbcurrencyService = new CBCurrencyService(cbcurrencyParser, dateParser, cbcurrencyChecker, dataProviderUrl, dataProvider);
     }
 

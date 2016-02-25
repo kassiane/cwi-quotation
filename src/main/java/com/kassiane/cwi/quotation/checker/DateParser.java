@@ -1,29 +1,12 @@
 package com.kassiane.cwi.quotation.checker;
 
-import java.text.DateFormat;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.Locale;
 
-public class DateParser {
+public interface DateParser {
 
-    private final Locale locale;
+    public static final String DATE_FORMAT = "dd/MM/yyyy";
 
-    public DateParser(final Locale locale) {
-        this.locale = locale;
-    }
+    Date parseDate(String date) throws ParseException;
 
-    public Date parseDate(final String date) {
-
-        final DateFormat format = new SimpleDateFormat("dd/MM/yyyy", this.locale);
-        Date dateD = null;
-        try {
-            dateD = format.parse(date);
-        } catch (final ParseException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
-        return dateD;
-    }
 }
