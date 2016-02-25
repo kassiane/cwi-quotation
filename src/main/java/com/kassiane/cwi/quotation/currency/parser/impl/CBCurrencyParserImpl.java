@@ -18,8 +18,8 @@ public class CBCurrencyParserImpl implements CBCurrencyParser {
 
     private final CBCurrencyMapper cbcurrencyMapper;
 
-    public CBCurrencyParserImpl(final CBCurrencyMapper cbcurrencyParser) {
-        this.cbcurrencyMapper = cbcurrencyParser;
+    public CBCurrencyParserImpl(final CBCurrencyMapper cbcurrencyMapper) {
+        this.cbcurrencyMapper = cbcurrencyMapper;
     }
 
     @Override

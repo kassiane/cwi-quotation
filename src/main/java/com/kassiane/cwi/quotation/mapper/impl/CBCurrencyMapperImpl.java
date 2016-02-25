@@ -6,7 +6,7 @@ import java.text.DecimalFormatSymbols;
 import java.text.ParseException;
 import java.util.Date;
 
-import com.kassiane.cwi.quotation.checker.DateParser;
+import com.kassiane.cwi.quotation.date.parser.DateParser;
 import com.kassiane.cwi.quotation.domain.CBCurrency;
 import com.kassiane.cwi.quotation.mapper.CBCurrencyMapper;
 

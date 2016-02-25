@@ -6,6 +6,8 @@ import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import com.kassiane.cwi.quotation.checker.impl.CBCurrencyCheckerImpl;
+import com.kassiane.cwi.quotation.date.parser.DateParser;
 import com.kassiane.cwi.quotation.mock.DateParserMock;
 
 /**

@@ -9,10 +9,10 @@ import java.text.ParseException;
 import java.util.Date;
 
 import com.kassiane.cwi.quotation.checker.CBCurrencyChecker;
-import com.kassiane.cwi.quotation.checker.DateParser;
 import com.kassiane.cwi.quotation.currency.parser.CBCurrencyParser;
 import com.kassiane.cwi.quotation.data.provider.DataProvider;
 import com.kassiane.cwi.quotation.data.provider.DataProviderUrl;
+import com.kassiane.cwi.quotation.date.parser.DateParser;
 import com.kassiane.cwi.quotation.domain.CBCurrency;
 
 public class CBCurrencyService {

@@ -1,6 +1,9 @@
-package com.kassiane.cwi.quotation.checker;
+package com.kassiane.cwi.quotation.checker.impl;
 
 import java.text.ParseException;
+
+import com.kassiane.cwi.quotation.checker.CBCurrencyChecker;
+import com.kassiane.cwi.quotation.date.parser.DateParser;
 
 public class CBCurrencyCheckerImpl implements CBCurrencyChecker {
 

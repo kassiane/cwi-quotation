@@ -3,7 +3,7 @@ package com.kassiane.cwi.quotation.mock;
 import java.text.ParseException;
 import java.util.Date;
 
-import com.kassiane.cwi.quotation.checker.DateParser;
+import com.kassiane.cwi.quotation.date.parser.DateParser;
 
 public class DateParserMock implements DateParser {
 

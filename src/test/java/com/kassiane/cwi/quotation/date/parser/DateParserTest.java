@@ -1,4 +1,4 @@
-package com.kassiane.cwi.quotation.checker;
+package com.kassiane.cwi.quotation.date.parser;
 
 import java.text.ParseException;
 import java.util.Calendar;
@@ -9,6 +9,9 @@ import java.util.Locale;
 import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
+
+import com.kassiane.cwi.quotation.date.parser.DateParser;
+import com.kassiane.cwi.quotation.date.parser.impl.DateParserImpl;
 
 /**
  * Test of class {@link DateParserImpl}.

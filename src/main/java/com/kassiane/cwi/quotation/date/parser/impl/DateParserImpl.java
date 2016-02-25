@@ -1,10 +1,12 @@
-package com.kassiane.cwi.quotation.checker;
+package com.kassiane.cwi.quotation.date.parser.impl;
 
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
+
+import com.kassiane.cwi.quotation.date.parser.DateParser;
 
 public class DateParserImpl implements DateParser {
 

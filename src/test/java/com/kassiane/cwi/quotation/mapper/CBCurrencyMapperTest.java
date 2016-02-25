@@ -7,7 +7,7 @@ import java.util.GregorianCalendar;
 import org.junit.Assert;
 import org.junit.Test;
 
-import com.kassiane.cwi.quotation.checker.DateParser;
+import com.kassiane.cwi.quotation.date.parser.DateParser;
 import com.kassiane.cwi.quotation.domain.CBCurrency;
 import com.kassiane.cwi.quotation.mapper.impl.CBCurrencyMapperImpl;
 import com.kassiane.cwi.quotation.mock.DateParserMock;

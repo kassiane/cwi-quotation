@@ -10,13 +10,13 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 import com.kassiane.cwi.quotation.checker.CBCurrencyChecker;
-import com.kassiane.cwi.quotation.checker.CBCurrencyCheckerImpl;
-import com.kassiane.cwi.quotation.checker.DateParser;
-import com.kassiane.cwi.quotation.checker.DateParserImpl;
+import com.kassiane.cwi.quotation.checker.impl.CBCurrencyCheckerImpl;
 import com.kassiane.cwi.quotation.currency.parser.CBCurrencyParser;
 import com.kassiane.cwi.quotation.currency.parser.impl.CBCurrencyParserImpl;
 import com.kassiane.cwi.quotation.data.provider.DataProvider;
 import com.kassiane.cwi.quotation.data.provider.DataProviderUrl;
+import com.kassiane.cwi.quotation.date.parser.DateParser;
+import com.kassiane.cwi.quotation.date.parser.impl.DateParserImpl;
 import com.kassiane.cwi.quotation.mapper.CBCurrencyMapper;
 import com.kassiane.cwi.quotation.mapper.impl.CBCurrencyMapperImpl;
 

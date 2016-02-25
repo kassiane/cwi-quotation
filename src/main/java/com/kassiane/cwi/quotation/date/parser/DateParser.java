@@ -1,4 +1,4 @@
-package com.kassiane.cwi.quotation.checker;
+package com.kassiane.cwi.quotation.date.parser;
 
 import java.text.ParseException;
 import java.util.Date;
