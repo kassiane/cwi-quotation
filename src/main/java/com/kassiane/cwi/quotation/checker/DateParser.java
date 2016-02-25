@@ -6,11 +6,11 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 
-public class DateChecker {
+public class DateParser {
 
     private final Locale locale;
 
-    public DateChecker(final Locale locale) {
+    public DateParser(final Locale locale) {
         this.locale = locale;
     }
 
@@ -25,10 +25,5 @@ public class DateChecker {
             e.printStackTrace();
         }
         return dateD;
-    }
-
-    public String getFormattedDate(final Date date) {
-        final DateFormat format = new SimpleDateFormat("dd/MM/yyyy", this.locale);
-        return format.format(date);
     }
 }

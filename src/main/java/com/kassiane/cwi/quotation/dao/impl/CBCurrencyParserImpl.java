@@ -9,17 +9,17 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
 
-import com.kassiane.cwi.quotation.dao.CBCurrencyDAO;
+import com.kassiane.cwi.quotation.dao.CBCurrencyParser;
 import com.kassiane.cwi.quotation.domain.CBCurrency;
 import com.kassiane.cwi.quotation.exception.CurrencyNotAvailableException;
 import com.kassiane.cwi.quotation.parser.CBCurrencyMapper;
 
-public class CBCurrencyDAOImpl implements CBCurrencyDAO {
+public class CBCurrencyParserImpl implements CBCurrencyParser {
 
-    private final CBCurrencyMapper cbcurrencyParser;
+    private final CBCurrencyMapper cbcurrencyMapper;
 
-    public CBCurrencyDAOImpl(final CBCurrencyMapper cbcurrencyParser) {
-        this.cbcurrencyParser = cbcurrencyParser;
+    public CBCurrencyParserImpl(final CBCurrencyMapper cbcurrencyParser) {
+        this.cbcurrencyMapper = cbcurrencyParser;
     }
 
     @Override
@@ -31,7 +31,7 @@ public class CBCurrencyDAOImpl implements CBCurrencyDAO {
 
         while (scanner.hasNextLine()) {
             line = scanner.nextLine();
-            final CBCurrency CBCurrency = this.cbcurrencyParser.mapCBCurrency(line);
+            final CBCurrency CBCurrency = this.cbcurrencyMapper.mapCBCurrency(line);
             currencies.put(CBCurrency.getName(), CBCurrency);
         }
         scanner.close();

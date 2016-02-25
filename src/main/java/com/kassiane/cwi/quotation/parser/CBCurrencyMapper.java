@@ -6,15 +6,15 @@ import java.text.DecimalFormatSymbols;
 import java.text.ParseException;
 import java.util.Date;
 
-import com.kassiane.cwi.quotation.checker.DateChecker;
+import com.kassiane.cwi.quotation.checker.DateParser;
 import com.kassiane.cwi.quotation.domain.CBCurrency;
 
 public class CBCurrencyMapper {
 
-    private final DateChecker dateChecker;
+    private final DateParser dateParser;
 
-    public CBCurrencyMapper(final DateChecker dateChecker) {
-        this.dateChecker = dateChecker;
+    public CBCurrencyMapper(final DateParser dateChecker) {
+        this.dateParser = dateChecker;
     }
 
     public CBCurrency mapCBCurrency(final String currencyLine) throws ParseException {
@@ -49,7 +49,7 @@ public class CBCurrencyMapper {
     }
 
     private Date parseDate(final String date) {
-        return this.dateChecker.parseDate(date);
+        return this.dateParser.parseDate(date);
     }
 
 }

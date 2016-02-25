@@ -7,42 +7,51 @@ import java.math.RoundingMode;
 import java.net.URL;
 import java.text.ParseException;
 import java.util.Date;
-import java.util.Locale;
 
 import com.kassiane.cwi.quotation.checker.CBCurrencyChecker;
-import com.kassiane.cwi.quotation.checker.DateChecker;
-import com.kassiane.cwi.quotation.dao.CBCurrencyDAO;
-import com.kassiane.cwi.quotation.data.provider.DataProviderReader;
+import com.kassiane.cwi.quotation.checker.DateParser;
+import com.kassiane.cwi.quotation.dao.CBCurrencyParser;
+import com.kassiane.cwi.quotation.data.provider.DataProvider;
 import com.kassiane.cwi.quotation.data.provider.DataProviderUrl;
 import com.kassiane.cwi.quotation.domain.CBCurrency;
 
 public class CBCurrencyService {
 
-    private final CBCurrencyDAO currencyDAO;
+    private final CBCurrencyParser cbcurrencyParser;
+    private final DateParser dateParser;
+    private final CBCurrencyChecker cbcurrencyChecker;
+    private final DataProviderUrl dataProviderUrl;
+    private final DataProvider dataProvider;
 
-    public CBCurrencyService(final CBCurrencyDAO currencyDAO) {
-        this.currencyDAO = currencyDAO;
+    public CBCurrencyService(final CBCurrencyParser cbcurrencyParser, final DateParser dateParser,
+            final CBCurrencyChecker cbcurrencyChecker, final DataProviderUrl dataProviderUrl,
+            final DataProvider dataProviderReader) {
+        this.cbcurrencyParser = cbcurrencyParser;
+        this.dateParser = dateParser;
+        this.cbcurrencyChecker = cbcurrencyChecker;
+        this.dataProviderUrl = dataProviderUrl;
+        this.dataProvider = dataProviderReader;
     }
 
     public BigDecimal currencyQuotation(final String from, final String to, final float value, final String quotation)
             throws IOException, ParseException {
-        final Locale ptBr = new Locale("pt", "BR");
-        final DateChecker dateChecker = new DateChecker(ptBr);
-        final CBCurrencyChecker cbcurrencyChecker = new CBCurrencyChecker(dateChecker);
-        final DataProviderUrl dataProviderUrl = new DataProviderUrl();
-        final DataProviderReader dataProviderReader = new DataProviderReader();
-        // validate entries here
-        cbcurrencyChecker.checkDate(quotation);
-        cbcurrencyChecker.checkMonetaryValue(value);
+        this.cbcurrencyChecker.checkDate(quotation);
+        this.cbcurrencyChecker.checkMonetaryValue(value);
 
-        final Date date = dateChecker.parseDate(quotation);
-        final URL url = dataProviderUrl.getUrl(date);
+        final Date date = this.dateParser.parseDate(quotation);
+        final URL url = this.dataProviderUrl.getUrl(date);
+        final String data = this.dataProvider.read(url);
 
-        final String data = dataProviderReader.read(url);
-        final CBCurrency fromCurrency = this.currencyDAO.getCurrency(data, from);
-        final CBCurrency toCurrency = this.currencyDAO.getCurrency(data, to);
-        System.out.println(fromCurrency.toString());
-        System.out.println(toCurrency.toString());
+        final CBCurrency fromCurrency = this.getCurrency(from, data);
+        final CBCurrency toCurrency = this.getCurrency(to, data);
+        return this.calculateCurrency(fromCurrency, toCurrency, value);
+    }
+
+    private CBCurrency getCurrency(final String currencyName, final String data) throws IOException, ParseException {
+        return this.cbcurrencyParser.getCurrency(data, currencyName);
+    }
+
+    private BigDecimal calculateCurrency(final CBCurrency fromCurrency, final CBCurrency toCurrency, final float value) {
         final BigDecimal proportion = fromCurrency.getBuyTax().divide(toCurrency.getBuyTax(), 2, RoundingMode.HALF_UP);
         final BigDecimal bigDecimalValue = new BigDecimal(Float.toString(value));
 

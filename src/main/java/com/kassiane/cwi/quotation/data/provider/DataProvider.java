@@ -7,9 +7,15 @@ import java.util.Scanner;
 
 import com.kassiane.cwi.quotation.exception.QuotationDateNotAvailableException;
 
-public class DataProviderReader {
+/**
+ * Entity that reads a remote quotation file and returns a String with its data.
+ *
+ * @author kassi
+ *
+ */
+public class DataProvider {
 
-    private final String quotationNotAvailable = "Não existe cotação para a data selecionada.";
+    private static final String quotationNotAvailable = "Quotation does not exist for selected date.";
 
     public String read(final URL url) throws IOException, QuotationDateNotAvailableException {
         Scanner scanner = null;

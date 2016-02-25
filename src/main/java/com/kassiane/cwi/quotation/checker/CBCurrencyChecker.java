@@ -1,67 +1,32 @@
 package com.kassiane.cwi.quotation.checker;
 
-import java.util.Calendar;
-import java.util.Date;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 
 public class CBCurrencyChecker {
 
     private final String negativeValue = "Value must not be negative or zero.";
+    private final String wrongDateFormat = "Date format must be dd/MM/yyyy.";
+    private final String nullDate = "Date must not be null.";
+    private final DateFormat datePattern = new SimpleDateFormat("dd/MM/yyyy");
 
-    private final DateChecker dateChecker;
-
-    public CBCurrencyChecker(final DateChecker dateChecker) {
-        this.dateChecker = dateChecker;
-    }
-
-    public String checkName(final String currencyName) {
-        return currencyName.toUpperCase();
-    }
-
-    /**
-     * Where:
-     *
-     * currency = 3 chars
-     *
-     * Restrictions:
-     *
-     *
-     *
-     * - If the quotation date is not available, an exception must be thrown;
-     *
-     * - The data source used will be the Brazilian central bank CSV file
-     * available at:
-     *
-     * http://www4.bcb.gov.br/pec/taxas/batch/cotacaomoedas.asp?id=txtodas
-     *
-     * - The return value should be rounded to two decimal places.
-     *
-     * - You must convert the currency through rate "Taxa Compra".
-     */
-
-    public void checkMonetaryValue(final float value) {
+    public boolean checkMonetaryValue(final float value) {
         if (value <= 0) {
             throw new IllegalArgumentException(this.negativeValue);
         }
+        return true;
     }
 
-    /**
-     * For non-working days (Saturday and Sunday, ignoring holidays) takes the
-     * quotation from the immediately preceding business day. If the quotation
-     * of the previous day is not available, an exception must be thrown;
-     *
-     * @param dateToCheck
-     * @return date when it is weekday, new valid date otherwise
-     */
-    public String checkDate(final String dateToCheck) {
-        final Date date = this.dateChecker.parseDate(dateToCheck);
-        final Calendar calendar = Calendar.getInstance();
-        calendar.setTime(date);
-
-        if (calendar.get(Calendar.DAY_OF_WEEK) == Calendar.SUNDAY) {
-            calendar.add(Calendar.DAY_OF_MONTH, -2);
-        } else if (calendar.get(Calendar.DAY_OF_WEEK) == Calendar.SATURDAY) {
-            calendar.add(Calendar.DAY_OF_MONTH, -1);
+    public boolean checkDate(final String dateToCheck) {
+        if (dateToCheck == null)
+            throw new IllegalArgumentException(this.nullDate);
+        try {
+            this.datePattern.setLenient(false);
+            this.datePattern.parse(dateToCheck);
+        } catch (final ParseException e) {
+            throw new IllegalArgumentException(this.wrongDateFormat, e);
         }
-        return this.dateChecker.getFormattedDate(new Date(calendar.getTimeInMillis()));
+        return true;
     }
 }
