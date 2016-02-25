@@ -30,7 +30,7 @@ public class DateParserTest {
         // given
         final String given = "23/02/2016";
         final Calendar givenCalendar = new GregorianCalendar();
-        givenCalendar.set(2016, 01, 23, 0, 0, 0);
+        givenCalendar.set(2016, 01, 23);
         // when
         final Date date = subject.parseDate(given);
         final Calendar returnedCalendar = new GregorianCalendar();
@@ -46,7 +46,7 @@ public class DateParserTest {
         // given
         final String given = "23/22/2016";
         final Calendar givenCalendar = new GregorianCalendar();
-        givenCalendar.set(2016, 01, 23, 0, 0, 0);
+        givenCalendar.set(2016, 01, 23);
         // when
         final Date date = subject.parseDate(given);
         final Calendar returnedCalendar = new GregorianCalendar();
@@ -59,7 +59,7 @@ public class DateParserTest {
         // given
         final String given = "30/02/2016";
         final Calendar givenCalendar = new GregorianCalendar();
-        givenCalendar.set(2016, 01, 23, 0, 0, 0);
+        givenCalendar.set(2016, 01, 23);
         // when
         final Date date = subject.parseDate(given);
         final Calendar returnedCalendar = new GregorianCalendar();
@@ -72,7 +72,7 @@ public class DateParserTest {
         // given
         final String given = "10022016";
         final Calendar givenCalendar = new GregorianCalendar();
-        givenCalendar.set(2016, 01, 23, 0, 0, 0);
+        givenCalendar.set(2016, 01, 23);
         // when
         final Date date = subject.parseDate(given);
         final Calendar returnedCalendar = new GregorianCalendar();

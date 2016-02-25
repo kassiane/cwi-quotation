@@ -1,4 +1,4 @@
-package com.kassiane.cwi.quotation.dao;
+package com.kassiane.cwi.quotation.currency.parser;
 
 import java.io.IOException;
 import java.text.ParseException;

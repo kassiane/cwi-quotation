@@ -13,11 +13,12 @@ import com.kassiane.cwi.quotation.checker.CBCurrencyChecker;
 import com.kassiane.cwi.quotation.checker.CBCurrencyCheckerImpl;
 import com.kassiane.cwi.quotation.checker.DateParser;
 import com.kassiane.cwi.quotation.checker.DateParserImpl;
-import com.kassiane.cwi.quotation.dao.CBCurrencyParser;
-import com.kassiane.cwi.quotation.dao.impl.CBCurrencyParserImpl;
+import com.kassiane.cwi.quotation.currency.parser.CBCurrencyParser;
+import com.kassiane.cwi.quotation.currency.parser.impl.CBCurrencyParserImpl;
 import com.kassiane.cwi.quotation.data.provider.DataProvider;
 import com.kassiane.cwi.quotation.data.provider.DataProviderUrl;
-import com.kassiane.cwi.quotation.parser.CBCurrencyMapper;
+import com.kassiane.cwi.quotation.mapper.CBCurrencyMapper;
+import com.kassiane.cwi.quotation.mapper.impl.CBCurrencyMapperImpl;
 
 public class CBCurrencyServiceIntegrationTest {
 
@@ -34,7 +35,7 @@ public class CBCurrencyServiceIntegrationTest {
     public static void setUp() {
         locale = new Locale("pt", "BR");
         dateParser = new DateParserImpl(locale);
-        cbcurrencyMapper = new CBCurrencyMapper(dateParser);
+        cbcurrencyMapper = new CBCurrencyMapperImpl(dateParser);
         cbcurrencyParser = new CBCurrencyParserImpl(cbcurrencyMapper);
         dataProviderUrl = new DataProviderUrl();
         dataProvider = new DataProvider();

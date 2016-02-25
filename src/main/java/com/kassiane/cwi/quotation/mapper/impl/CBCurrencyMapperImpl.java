@@ -1,4 +1,4 @@
-package com.kassiane.cwi.quotation.parser;
+package com.kassiane.cwi.quotation.mapper.impl;
 
 import java.math.BigDecimal;
 import java.text.DecimalFormat;
@@ -8,18 +8,20 @@ import java.util.Date;
 
 import com.kassiane.cwi.quotation.checker.DateParser;
 import com.kassiane.cwi.quotation.domain.CBCurrency;
+import com.kassiane.cwi.quotation.mapper.CBCurrencyMapper;
 
-public class CBCurrencyMapper {
+public class CBCurrencyMapperImpl implements CBCurrencyMapper {
 
+    private static final String INVALID_NBR_COLUMNS = "Invalid number of columns.";
     private final DateParser dateParser;
 
-    public CBCurrencyMapper(final DateParser dateChecker) {
-        this.dateParser = dateChecker;
+    public CBCurrencyMapperImpl(final DateParser dateParser) {
+        this.dateParser = dateParser;
     }
 
-    public CBCurrency mapCBCurrency(final String currencyLine) throws ParseException {
+    @Override
+    public CBCurrency mapCBCurrency(final String[] items) throws ParseException, IllegalArgumentException {
         CBCurrency currency = null;
-        final String items[] = currencyLine.split(";");
         if (items.length >= 8) {
             final String date = items[0];
             final String code = items[1];
@@ -33,7 +35,8 @@ public class CBCurrencyMapper {
             currency = new CBCurrency(name.toUpperCase(), code, type, this.parseMonetaryValue(buyTax),
                     this.parseMonetaryValue(sellTax), this.parseMonetaryValue(buyParity), this.parseMonetaryValue(sellParity),
                     this.parseDate(date));
-        }
+        } else
+            throw new IllegalArgumentException(INVALID_NBR_COLUMNS);
         return currency;
     }
 

@@ -1,4 +1,4 @@
-package com.kassiane.cwi.quotation.dao.impl;
+package com.kassiane.cwi.quotation.currency.parser.impl;
 
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
@@ -9,10 +9,10 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
 
-import com.kassiane.cwi.quotation.dao.CBCurrencyParser;
+import com.kassiane.cwi.quotation.currency.parser.CBCurrencyParser;
 import com.kassiane.cwi.quotation.domain.CBCurrency;
 import com.kassiane.cwi.quotation.exception.CurrencyNotAvailableException;
-import com.kassiane.cwi.quotation.parser.CBCurrencyMapper;
+import com.kassiane.cwi.quotation.mapper.CBCurrencyMapper;
 
 public class CBCurrencyParserImpl implements CBCurrencyParser {
 
@@ -31,7 +31,8 @@ public class CBCurrencyParserImpl implements CBCurrencyParser {
 
         while (scanner.hasNextLine()) {
             line = scanner.nextLine();
-            final CBCurrency CBCurrency = this.cbcurrencyMapper.mapCBCurrency(line);
+            final String[] items = line.split(";");
+            final CBCurrency CBCurrency = this.cbcurrencyMapper.mapCBCurrency(items);
             currencies.put(CBCurrency.getName(), CBCurrency);
         }
         scanner.close();
